@@ -2,14 +2,15 @@
 #include<stdint.h>
 #include <unistd.h>
 #include "system.h"
+#include <sys/alt_irq.h>
 #include <io.h>
 #include <alt_types.h>
-#include <sys/alt_irq.h>
 #include <sys/alt_stdio.h>
 #include "sys/alt_sys_init.h"
 #include"opencores_i2c.h"
 #include"opencores_i2c_regs.h"
-
+#include "altera_avalon_timer_regs.h"
+#include "altera_avalon_timer.h"
 
 
 #define ADXL345_addr 0x1D
