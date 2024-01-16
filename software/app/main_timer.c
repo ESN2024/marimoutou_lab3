@@ -77,8 +77,8 @@ int main()
 	
 
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
-	calibrate_adxl345();
 	
+	calibrate_adxl345();
 	
 	// Register IRQ
 	alt_irq_register(TIMER_0_IRQ,NULL,timer_irq);
