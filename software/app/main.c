@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdint.h>
+#include <unistd.h>
 #include "system.h"
 #include <sys/alt_irq.h>
 #include <io.h>
@@ -28,7 +29,7 @@ unsigned int read_adx345(int addr)
 	I2C_write(OPENCORES_I2C_0_BASE,addr, 0);
 	I2C_start(OPENCORES_I2C_0_BASE,ADXL345_addr, 1);
 	
-	capture = I2C_read(OPENCORES_I2C_0_BASE, 0);
+	capture = I2C_read(OPENCORES_I2C_0_BASE, 1);
 	return capture;
 }
 
@@ -48,8 +49,13 @@ int main()
 	{
 		X0=read_adx345(DATAX0);
 		X1=read_adx345(DATAX1);
+		Y0=read_adx345(DATAY0);
+		Y1=read_adx345(DATAY1);
+		Z0=read_adx345(DATAZ0);
+		Z1=read_adx345(DATAZ1);
 		
-		alt_printf("X : %x%x \n",X0,X1);
+		alt_printf("X: %x%x Y: %x%x Z: %x%x\n",X0,X1,Y0,Y1,Z0,Z1);
+		usleep(100000);
 	}
 	
 	
