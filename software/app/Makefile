@@ -142,7 +142,7 @@ ACDS_VERSION := 18.1
 ELF := mrmtlab3.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS += ../../main.c
+C_SRCS += main_timer.c
 CXX_SRCS :=
 ASM_SRCS :=
 

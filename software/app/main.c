@@ -21,7 +21,7 @@
 #define DATAZ0 0x36
 #define DATAZ1 0x37
 
-unsigned int read_adx345(int addr)
+unsigned int read_adxl345(int addr)
 {
 	uint32_t capture=0;	
 	
@@ -47,12 +47,12 @@ int main()
 	
 	while(1)
 	{
-		X0=read_adx345(DATAX0);
-		X1=read_adx345(DATAX1);
-		Y0=read_adx345(DATAY0);
-		Y1=read_adx345(DATAY1);
-		Z0=read_adx345(DATAZ0);
-		Z1=read_adx345(DATAZ1);
+		X0=read_adxl345(DATAX0);
+		X1=read_adxl345(DATAX1);
+		Y0=read_adxl345(DATAY0);
+		Y1=read_adxl345(DATAY1);
+		Z0=read_adxl345(DATAZ0);
+		Z1=read_adxl345(DATAZ1);
 		
 		alt_printf("X: %x%x Y: %x%x Z: %x%x\n",X0,X1,Y0,Y1,Z0,Z1);
 		usleep(100000);
