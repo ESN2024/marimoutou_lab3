@@ -63,6 +63,54 @@ set_location_assignment PIN_P11 -to CLK
 set_location_assignment PIN_A7 -to RESET
 set_location_assignment PIN_V11 -to SDA
 set_location_assignment PIN_AB15 -to SCL
+set_location_assignment PIN_B8 -to BTN
+
+set_location_assignment PIN_C14 -to SEG1[0]
+set_location_assignment PIN_E15 -to SEG1[1]
+set_location_assignment PIN_C15 -to SEG1[2]
+set_location_assignment PIN_C16 -to SEG1[3]
+set_location_assignment PIN_E16 -to SEG1[4]
+set_location_assignment PIN_D17 -to SEG1[5]
+set_location_assignment PIN_C17 -to SEG1[6]
+set_location_assignment PIN_D15 -to SEG1[7]
+
+set_location_assignment PIN_C18 -to SEG2[0]
+set_location_assignment PIN_D18 -to SEG2[1]
+set_location_assignment PIN_E18 -to SEG2[2]
+set_location_assignment PIN_B16 -to SEG2[3]
+set_location_assignment PIN_A17 -to SEG2[4]
+set_location_assignment PIN_A18 -to SEG2[5]
+set_location_assignment PIN_B17 -to SEG2[6]
+set_location_assignment PIN_A16 -to SEG2[7]
+
+set_location_assignment PIN_B20 -to SEG3[0]
+set_location_assignment PIN_A20 -to SEG3[1]
+set_location_assignment PIN_B19 -to SEG3[2]
+set_location_assignment PIN_A21 -to SEG3[3]
+set_location_assignment PIN_B21 -to SEG3[4]
+set_location_assignment PIN_C22 -to SEG3[5]
+set_location_assignment PIN_B22 -to SEG3[6]
+set_location_assignment PIN_A19 -to SEG3[7]
+
+set_location_assignment PIN_F21 -to SEG4[0]
+set_location_assignment PIN_E22 -to SEG4[1]
+set_location_assignment PIN_E21 -to SEG4[2]
+set_location_assignment PIN_C19 -to SEG4[3]
+set_location_assignment PIN_C20 -to SEG4[4]
+set_location_assignment PIN_D19 -to SEG4[5]
+set_location_assignment PIN_E17 -to SEG4[6]
+set_location_assignment PIN_D22 -to SEG4[7]
+
+set_location_assignment PIN_F18 -to SEG5[0]
+set_location_assignment PIN_E20 -to SEG5[1]
+set_location_assignment PIN_E19 -to SEG5[2]
+set_location_assignment PIN_J18 -to SEG5[3]
+set_location_assignment PIN_H19 -to SEG5[4]
+set_location_assignment PIN_F19 -to SEG5[5]
+set_location_assignment PIN_F20 -to SEG5[6]
+set_location_assignment PIN_F17 -to SEG5[7]
+
 
 set_global_assignment -name BOARD "MAX 10 DE10 - Lite"
+set_global_assignment -name VHDL_FILE BCD7SEG.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
