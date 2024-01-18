@@ -103,7 +103,6 @@ void print_to_7seg(int16_t value)
 static void timer_irq(void *Context)
 {
 
-	
 	X0=read_adxl345(DATAX0);
 	X1=read_adxl345(DATAX1);
 	Y0=read_adxl345(DATAY0);
