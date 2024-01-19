@@ -16,6 +16,7 @@
 uint8_t X0,X1,Y0,Y1,Z0,Z1;
 int16_t X,Y,Z;
 uint8_t flag=0;
+
 #define ADXL345_addr 0x1D
 #define I2C_SPEED 100000
 #define DATAX0 0x32
@@ -52,9 +53,9 @@ void write_adxl345(int addr, int value)
 
 void calibrate_adxl345()
 {
-	write_adxl345(reg_OFSX,0);
-	write_adxl345(reg_OFSY,0);
-	write_adxl345(reg_OFSZ,-29);
+	write_adxl345(reg_OFSX,-30);
+	write_adxl345(reg_OFSY,-30);
+	write_adxl345(reg_OFSZ,-28);
 
 }
 
@@ -70,14 +71,14 @@ int16_t complement(int16_t value)
 
 void print_to_7seg(int16_t value)
 {
-	int8_t data[5] = {0,0,0,0,0};
+	uint8_t data[5] = {0,0,0,0,0};
 	if (value < 0)
 	{
-		data[0] = value % 10 ;
-		data[1] = (value/10) % 10 ;
-		data[2] = (value/100) % 10 ;
-		data[3] = value / 1000 ;
-		data[4] = 10;			
+		data[0] = -value % 10 ;
+		data[1] = (-value/10) % 10 ;
+		data[2] = (-value/100) % 10 ;
+		data[3] = -value / 1000 ;
+		data[4] = 15;			
 	}
 	else
 	{
@@ -85,7 +86,7 @@ void print_to_7seg(int16_t value)
 		data[1] = (value/10) % 10 ;
 		data[2] = (value/100) % 10 ;
 		data[3] = value / 1000 ;
-		data[4] = 11;		
+		data[4] = 0;		
 	}
 
 	
@@ -122,6 +123,20 @@ static void timer_irq(void *Context)
 	
 	alt_printf("X: %x Y: %x Z: %x\n",X,Y,Z);
 	
+	switch(flag)
+	{
+		case 0 : print_to_7seg(X);
+		break;
+		
+		case 1 : print_to_7seg(Y);
+		break;
+		
+		case 2 : print_to_7seg(Z);
+		break;
+		
+		//default	: print_to_7seg(X);	
+	}
+	
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE, 0b1);
 }
 
@@ -146,29 +161,15 @@ int main()
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
 	
 	calibrate_adxl345();
-	//write_adxl345(0x31, 0x7);
+	write_adxl345(0x31, 0x7);
+	
+	alt_printf("DATA_FORMAT %x\n",read_adxl345(0x31));
 	
 	// Register IRQ
 	alt_irq_register(TIMER_0_IRQ,NULL,timer_irq);
 	alt_irq_register(BTN_IRQ,NULL,key_irq);
 	
-	while(1)
-	{
-		switch(flag)
-		{
-			case 0 : print_to_7seg(X);
-			break;
-			
-			case 1 : print_to_7seg(Y);
-			break;
-			
-			case 2 : print_to_7seg(Z);
-			break;
-			
-			default	: print_to_7seg(X);	
-		}
-		
-	}
+	while(1){}
 	
 	return 0;
 	

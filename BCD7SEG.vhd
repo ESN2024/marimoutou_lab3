@@ -23,7 +23,7 @@ begin
 				"11111000" when input = "0111" else --7
 				"10000000" when input = "1000" else --8
 				"10010000" when input = "1001" else	--9
-				"10111111" when input = "1010" else --10
+				"10111111" when input = "1111" else --10 affiche le signe -
 				"11111111";
 
 end architecture;
