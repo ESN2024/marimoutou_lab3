@@ -17,6 +17,7 @@ uint8_t X0,X1,Y0,Y1,Z0,Z1;
 int16_t X,Y,Z;
 uint8_t flag=0;
 
+/**Global Variables definition**/
 #define ADXL345_addr 0x1D
 #define I2C_SPEED 100000
 #define DATAX0 0x32
@@ -171,8 +172,5 @@ int main()
 	
 	while(1){}
 	
-	return 0;
-	
-	
-	
+	return 0;	
 }
