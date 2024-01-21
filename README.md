@@ -65,6 +65,10 @@ Calibrage X            |  Calibrage Y              | Calibrage Z
 
 
 
+https://github.com/ESN2024/marimoutou_lab3/assets/97475510/72604f21-7fbb-41c7-89ee-17648bd74458
+
+
+
 
 ## Conclusion
 Dans ce tp, nous avons pu utiliser un bloc IP afin de communiquer en I2C avec notre périphérique sans avoir à écrire nous même toutes les macros. Grâce au lab 2 afficher les données sur les 7 segments n'étaient pas trés difficile. Les datasheets mise à disposition et la lecture des codes sources de notre bloc IP à permis d'écrire les fonctions de base sans problème. La partie la plus complexe reposant dans la calibration de la carte qui je pense, pour ma part, à était mal réalisé car j'ai bien une valeurs valant approximativement 1000 mg dans les positions qui le permettent cependant en retournant la carte je m'attendais à avoir la même valeurs en négatif *(soit -1024 mg)* mais j'ai le triple soit -3000 et quelque, cela peut venir de l'application du coefficient de résolution. Mise à part cela, les fonctionnalités demandés sont là et c'est un TP menée sans grande difficulté.
