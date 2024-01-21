@@ -49,11 +49,12 @@ Enfin on calibre la carte pour avoir des valeurs plausibles.
 
 Dans un premier temps, j'ai écrit les fonctions que j'aurais le plus à utiliser tels que `read_adxl345()`, qui me permet de lire les registre `0x32, 0x33, 0x34, 0x35, 0x36, 0x37` correspondant respectivement au coordonnées `X0, X1, Y0, Y1, Z0, Z1` et `write_adxl345()` qui permet d'écrire une donnée à l'adresse souhaité.
 ### Affichage des données
-La 2ème étape était d'envoyer les données sur la liaison UART afin de les afficher dans le `nios2-terminal` pour ce faire je viens lire la donnée sur les registres cités précédement les formaté sur 16 bites en réalisant un décalage et une concaténation *(Ex : X = (X1<<8) | X0)* on vient ensuite réalisé le complément à deux afin de gérer les nombres négatifs et enfin on les affiches à l'aide de la fonction `alt_printf`.
+La 2ème étape était d'envoyer les données sur la liaison UART afin de les afficher dans le `nios2-terminal` pour ce faire, je viens d'abord écrire dans le registre **DATA_FORMAT** afin de passer en full résolution puis je viens lire la donnée sur les registres cités précédement les formaté sur 16 bites en réalisant un décalage et une concaténation *(Ex : X = (X1<<8) | X0)* on vient ensuite réalisé le complément à deux afin de gérer les nombres négatifs et enfin on les affiches à l'aide de la fonction `alt_printf`.
 
 ### Calibration
 
 Nous allons calibrer la carte à l'aide des registre OFSX(0x1E), OFSY(0x1F),(OFSZ 0x20)
+La datasheet de l'ADXL345 nous indique que quand la carte est poser face vers le haut on est censés avoir **(0,0,1)g** soit `(0,0,1000)mg`. La méthode proposé dans la datasheet nous indique que nous devons remettre les offset à zéro récuperer la valeur des bits de poids faible et y appliqué un calcul, cette méthode ne marchant pas pour moi je décide de modifier l'offset à la main afin de voir afficher 1000 mg. La valeur maximal que j'ai pu atteindre est 1024mg. J'ai donc réaliser la même opération sur les deux autres axes en plaçant la carte dans les positions indiqués ci-dessous.
 
 Calibrage X            |  Calibrage Y              | Calibrage Z
 :-------------------------:|:-------------------------:|:-------------------------:
@@ -66,5 +67,5 @@ Calibrage X            |  Calibrage Y              | Calibrage Z
 
 
 ## Conclusion
-
+Dans ce tp, nous avons pu utiliser un bloc IP afin de communiquer en I2C avec notre périphérique sans avoir à écrire nous même toutes les macros. Grâce au lab 2 afficher les données sur les 7 segments n'étaient pas trés difficile. Les datasheets mise à disposition et la lecture des codes sources de notre bloc IP à permis d'écrire les fonctions de base sans problème. La partie la plus complexe reposant dans la calibration de la carte qui je pense, pour ma part, à était mal réalisé car j'ai bien une valeurs valant approximativement 1000 mg dans les positions qui le permettent cependant en retournant la carte je m'attendais à avoir la même valeurs en négatif *(soit -1024 mg)* mais j'ai le triple soit -3000 et quelque, cela peut venir de l'application du coefficient de résolution. Mise à part cela, les fonctionnalités demandés sont là et c'est un TP menée sans grande difficulté.
 
