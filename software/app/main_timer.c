@@ -160,9 +160,12 @@ int main()
 
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
 	
-	calibrate_adxl345();
-	write_adxl345(0x31, 0b111);
+	write_adxl345(0x31, 0b111);	
+	//write_adxl345(0x31, 0b1000);	
 	
+	calibrate_adxl345();
+
+
 	alt_printf("DATA_FORMAT %x OFFSET : %x %x %x \n",read_adxl345(0x31),read_adxl345(reg_OFSX),read_adxl345(reg_OFSY),read_adxl345(reg_OFSZ));
 	
 	// Register IRQ
