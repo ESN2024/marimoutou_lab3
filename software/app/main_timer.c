@@ -160,7 +160,8 @@ int main()
 
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
 	
-	write_adxl345(0x31, 0b111);	
+	//ecriture dans le registre DATA_FORMAT afin de passer en pleine résolution
+	write_adxl345(0x31, 0b111);	 
 	//write_adxl345(0x31, 0b1000);	
 	
 	calibrate_adxl345();
