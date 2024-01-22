@@ -54,18 +54,17 @@ void write_adxl345(int addr, int value)
 
 void calibrate_adxl345()
 {
-	write_adxl345(reg_OFSX,-30);
-	write_adxl345(reg_OFSY,-30);
+	write_adxl345(reg_OFSX,0);
+	write_adxl345(reg_OFSY,0);
 	write_adxl345(reg_OFSZ,-28);
 
 }
 
 int16_t complement(int16_t value)
 {
-	if(value & 0x8000)
-	{
-		value=-(0xFFFF - value +1);
-	}
+
+	value=-(0xFFFF - value +1);
+
 	
 	return value*3.9;
 }
@@ -162,9 +161,9 @@ int main()
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
 	
 	calibrate_adxl345();
-	write_adxl345(0x31, 0x7);
+	write_adxl345(0x31, 0b111);
 	
-	alt_printf("DATA_FORMAT %x\n",read_adxl345(0x31));
+	alt_printf("DATA_FORMAT %x OFFSET : %x %x %x \n",read_adxl345(0x31),read_adxl345(reg_OFSX),read_adxl345(reg_OFSY),read_adxl345(reg_OFSZ));
 	
 	// Register IRQ
 	alt_irq_register(TIMER_0_IRQ,NULL,timer_irq);
