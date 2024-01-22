@@ -112,15 +112,16 @@ static void timer_irq(void *Context)
 	Z1=read_adxl345(DATAZ1);
 	
 	
-	//complement a deux
 	X= (X1 << 8) | X0;
 	Y= (Y1 << 8) | Y0;
 	Z= (Z1 << 8) | Z0;
 	
+	//complement a deux
 	complement(X);
 	complement(Y);
 	complement(Z);
 	
+	//envoie des données sur la liaison UART
 	alt_printf("X: %x Y: %x Z: %x\n",X,Y,Z);
 	
 	switch(flag)
