@@ -19,7 +19,7 @@ uint8_t flag=0;
 
 /**Global Variables definition**/
 #define ADXL345_addr 0x1D
-#define I2C_SPEED 100000
+#define I2C_SPEED 400000
 #define DATAX0 0x32
 #define DATAX1 0x33
 #define DATAY0 0x34
@@ -32,7 +32,7 @@ uint8_t flag=0;
 #define reg_OFSY 0x1F
 #define reg_OFSZ 0x20
 
-unsigned int read_adxl345(int addr)
+uint8_t read_adxl345(int16_t addr)
 {
 	uint8_t capture=0;	
 	
@@ -44,7 +44,7 @@ unsigned int read_adxl345(int addr)
 	return capture;
 }
 
-void write_adxl345(int addr, int value)
+void write_adxl345(int16_t addr, int16_t value)
 {
 	I2C_start(OPENCORES_I2C_0_BASE,ADXL345_addr, 0);	
 	I2C_write(OPENCORES_I2C_0_BASE,addr, 0);
@@ -161,7 +161,7 @@ int main()
 	I2C_init(OPENCORES_I2C_0_BASE,ALT_CPU_CPU_FREQ,I2C_SPEED);
 	
 	calibrate_adxl345();
-	write_adxl345(0x31, 0b111);
+	//write_adxl345(0x31, 0b111);
 	
 	alt_printf("DATA_FORMAT %x OFFSET : %x %x %x \n",read_adxl345(0x31),read_adxl345(reg_OFSX),read_adxl345(reg_OFSY),read_adxl345(reg_OFSZ));
 	
