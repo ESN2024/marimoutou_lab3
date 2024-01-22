@@ -58,7 +58,7 @@ La 2ème étape était d'envoyer les données sur la liaison UART afin de les af
 
 ### Calibration
 
-Nous allons calibrer la carte à l'aide des registre **OFSX(0x1E)**, **OFSY(0x1F)**,**(OFSZ 0x20)**
+Nous allons calibrer la carte à l'aide des registre **OFSX(0x1E)**, **OFSY(0x1F)**,**(OFSZ 0x20)** .
 La datasheet de l'ADXL345 nous indique que quand la carte est poser face vers le haut on est censés avoir **(0,0,1)g** soit `(0,0,1000)mg`. La méthode proposé dans la datasheet nous indique que nous devons remettre les offset à zéro récuperer la valeur des bits de poids faible et y appliqué un calcul, cette méthode ne marchant pas parfaitement pour moi je décide de modifier l'offset à la main par dichotomie afin de voir afficher 1000 mg. La valeur maximal que j'ai pu atteindre est 1024mg. J'ai donc réaliser la même opération sur les deux autres axes en plaçant la carte dans les positions indiqués ci-dessous.
 
 Calibrage X            |  Calibrage Y              | Calibrage Z
