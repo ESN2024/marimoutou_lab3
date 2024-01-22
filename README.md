@@ -44,7 +44,7 @@ Une fois cela fait, nous pouvons écrire nos scripts C, les compiler et les tél
 
 ## Travail effectué
 Nous avons ensuite créer un fichier `main.c` et  `main_timer.c` qui contiennent les fonctions qui nous permettent de lire et écrire dans les registres en I2C.
-Ensuite nous avons permis l'affichage des données en UART avec un afficheage des données cadencé par le timer.
+Ensuite nous avons permis l'affichage des données en UART avec un affichage des données cadencé par le timer.
 Enfin on calibre la carte pour avoir des valeurs plausibles.
 
 ### Les fonctions I2C
@@ -52,6 +52,9 @@ Enfin on calibre la carte pour avoir des valeurs plausibles.
 Dans un premier temps, j'ai écrit les fonctions que j'aurais le plus à utiliser tels que `read_adxl345()`, qui me permet de lire les registre `0x32, 0x33, 0x34, 0x35, 0x36, 0x37` correspondant respectivement au coordonnées `X0, X1, Y0, Y1, Z0, Z1` et `write_adxl345()` qui permet d'écrire une donnée à l'adresse souhaité.
 ### Affichage des données
 La 2ème étape était d'envoyer les données sur la liaison UART afin de les afficher dans le `nios2-terminal` pour ce faire, je viens d'abord écrire dans le registre **DATA_FORMAT** afin de passer en pleine résolution puis je viens lire la donnée sur les registres cités précédement les formaté sur 16 bites en réalisant un décalage et une concaténation *(Ex : X = (X1<<8) | X0)* on vient ensuite réalisé le complément à deux afin de gérer les nombres négatifs et appliqué le facteur d'échelle (3.9mg/LSB), enfin on les affiches à l'aide de la fonction `alt_printf`.
+
+![terminal](https://github.com/ESN2024/marimoutou_lab3/assets/97475510/94505426-e049-405c-ae0b-6fb272a271bc)
+
 
 ### Calibration
 
