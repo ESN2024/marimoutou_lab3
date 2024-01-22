@@ -19,7 +19,7 @@ A cela on ajoute :
 * Un PIO 4 bits pour le deuxième afficheur 7 segments.
 * Un PIO 4 bits pour le troisième afficheur 7 segments.
 * Un PIO 4 bits pour le quatrième afficheur 7 segments.
-* Un PIO 4 bits pour le cinquième afficheur 7 segments qiu affichera le signe.
+* Un PIO 4 bits pour le cinquième afficheur 7 segments qui affichera le signe.
 * Un PIO 1 bits pour le bouton poussoir (KEY1).
 * Un Timer 32 bits réglé sur une période de 500 ms.
 * Un OpenCores I2C.
